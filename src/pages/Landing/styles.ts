@@ -71,3 +71,4 @@ export const ConnectionsText = styled.Text`
   max-width: 140px;
   margin-top: 40px;
 `
+

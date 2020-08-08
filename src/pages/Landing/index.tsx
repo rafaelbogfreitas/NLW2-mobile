@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigation } from "@react-navigation/native";
 
 import styles, {
   LandingContainer,
@@ -18,6 +19,8 @@ import giveClassesIcon from "../../assets/images/icons/give-classes.png";
 import heartIcon from "../../assets/images/icons/heart.png";
 
 const Landing = () => {
+  const navigation = useNavigation();
+
   return (
     <LandingContainer>
       <LandingImage
@@ -38,8 +41,8 @@ const Landing = () => {
             Estudar
           </LandingButtonText>
         </LandingButton>
-        
-        <LandingButton bg={"#04d361"}>
+
+        <LandingButton bg={"#04d361"} onPress={() => navigation.navigate("GiveClasses")}>
           <Icon source={giveClassesIcon} />
           <LandingButtonText>
             Dar aulas
@@ -48,7 +51,7 @@ const Landing = () => {
       </ButtonsContainer>
 
       <ConnectionsText>
-        Total de 285 conexões já realizadas. {" "} 
+        Total de 285 conexões já realizadas. {" "}
         <Icon source={heartIcon} />
       </ConnectionsText>
     </LandingContainer>
