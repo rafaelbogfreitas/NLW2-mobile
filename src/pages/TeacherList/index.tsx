@@ -1,10 +1,12 @@
 import React from 'react';
 
-import { View } from "./styles";
+import { Container } from "./styles";
 
 const TeacherList = () => {
   return (
-    <View />
+    <Container>
+      
+    </Container>
   )
 }
 

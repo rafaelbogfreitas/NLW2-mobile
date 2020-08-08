@@ -1,10 +1,10 @@
 import React from 'react';
 
-import { View } from "../TeacherList/styles";
+import { Container } from "../TeacherList/styles";
 
 const Favorites = () => {
   return (
-    <View />
+    <Container />
   )
 }
 

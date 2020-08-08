@@ -25,7 +25,7 @@ const GiveClasses = () => {
           Para começar você precisa se cadastrar como professor na nossa plataforma web.
         </Description>
       </GiveClassesBg>
-      <OkButton onPress={() => goBack("Landing")}>
+      <OkButton onPress={() => goBack()}>
         <OkButtonText>
           Tudo bem
         </OkButtonText>

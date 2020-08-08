@@ -35,7 +35,7 @@ const Landing = () => {
       </LandingText>
 
       <ButtonsContainer>
-        <LandingButton bg={"#9871f5"}>
+        <LandingButton bg={"#9871f5"} onPress={() => navigation.navigate("Study")}>
           <Icon source={studyIcon} />
           <LandingButtonText>
             Estudar
