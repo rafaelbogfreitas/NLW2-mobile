@@ -22,7 +22,7 @@ const StudyTabs = () => {
       iconStyle: {
         flex: 0,
         width: 20,
-        height: 20
+        height: 30
       },
       labelStyle: {
         fontFamily: "Archivo_bold",
@@ -39,11 +39,11 @@ const StudyTabs = () => {
         component={TeacherList}
         options={{
           tabBarLabel: 'Proffys',
-          tabBarIcon: ({ color, size }) => {
+          tabBarIcon: ({ color, size, focused }) => {
             return (
               <Ionicons
                 name="ios-easel"
-                color={color}
+                color={focused ? "#8557e5" : color}
                 size={size}
               />
             )
@@ -55,11 +55,11 @@ const StudyTabs = () => {
         component={Favorites}
         options={{
           tabBarLabel: 'Favorites',
-          tabBarIcon: ({ color, size }) => {
+          tabBarIcon: ({ color, size, focused }) => {
             return (
               <Ionicons
                 name="ios-heart"
-                color={color}
+                color={focused ? "#8557e5" : color}
                 size={size}
               />
             )

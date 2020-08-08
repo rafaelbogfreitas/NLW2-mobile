@@ -1,10 +1,13 @@
 import React from 'react';
 
+import PageHeader from "../../components/PageHeader";
 import { Container } from "../TeacherList/styles";
 
 const Favorites = () => {
   return (
-    <Container />
+    <Container>
+      <PageHeader title="Meus proffys favoritos"/>
+    </Container>
   )
 }
 
