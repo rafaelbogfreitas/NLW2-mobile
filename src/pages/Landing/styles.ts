@@ -11,6 +11,11 @@ export default styles;
 
 import styled from "styled-components/native";
 
+
+interface buttonProps {
+  bg: string;
+}
+
 export const LandingContainer = styled.View`
   background-color: #8257e5;
   flex: 1;
@@ -24,11 +29,36 @@ export const LandingImage = styled.Image`
 
 export const LandingText = styled.Text`
   color: #fff;
+  font-family: Poppins;
   font-size: 20px;
   line-height: 30px;
   margin-top: 80px;
 `
 
 export const LandingTextBold = styled.Text`
-font-weight: bold;
+  font-family: Poppins_semiBold;
 `
+
+export const ButtonsContainer = styled.View`
+  flex-direction: row;
+  margin-top: 40px;
+  justify-content:space-between;
+`
+
+export const LandingButton = styled.TouchableOpacity<{bg: string}>`
+  height: 150px;
+  width: 48%;
+  background-color: black;
+  border-radius: 8px;
+  padding: 24px;
+  justify-content:space-between;
+  background-color: ${({ bg }) => bg }
+
+`
+export const LandingButtonText = styled.Text`
+  font-family: Archivo_bold;
+  color: #fff;
+  font-size: 20px;
+`
+
+export const StudyIcon = styled.Image``
