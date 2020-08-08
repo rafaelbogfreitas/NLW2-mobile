@@ -45,14 +45,14 @@ export const ButtonsContainer = styled.View`
   justify-content:space-between;
 `
 
-export const LandingButton = styled.TouchableOpacity<{bg: string}>`
+export const LandingButton = styled.TouchableOpacity<{ bg: string }>`
   height: 150px;
   width: 48%;
   background-color: black;
   border-radius: 8px;
   padding: 24px;
   justify-content:space-between;
-  background-color: ${({ bg }) => bg }
+  background-color: ${({ bg }) => bg}
 
 `
 export const LandingButtonText = styled.Text`
@@ -61,4 +61,13 @@ export const LandingButtonText = styled.Text`
   font-size: 20px;
 `
 
-export const StudyIcon = styled.Image``
+export const Icon = styled.Image``
+
+export const ConnectionsText = styled.Text`
+  font-family: Poppins;
+  color: #d4c2ff;
+  font-size: 12px;
+  line-height: 20px;
+  max-width: 140px;
+  margin-top: 40px;
+`
