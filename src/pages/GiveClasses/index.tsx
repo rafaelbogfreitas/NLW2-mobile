@@ -16,7 +16,7 @@ import {
 import bgImg from "../../assets/images/give-classes-background.png";
 
 const GiveClasses = () => {
-  const { navigate } = useNavigation();
+  const { goBack } = useNavigation();
   return (
     <LandingContainer>
       <GiveClassesBg source={bgImg}>
@@ -25,7 +25,7 @@ const GiveClasses = () => {
           Para começar você precisa se cadastrar como professor na nossa plataforma web.
         </Description>
       </GiveClassesBg>
-      <OkButton onPress={() => navigate("Landing")}>
+      <OkButton onPress={() => goBack("Landing")}>
         <OkButtonText>
           Tudo bem
         </OkButtonText>
