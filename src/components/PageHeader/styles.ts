@@ -19,6 +19,12 @@ export const BackButtonImg = styled.Image.attrs({
 })`
 `
 
+export const Header = styled.View`
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+`
+
 export const Logo = styled.Image.attrs({
   resizeMode: "contain"
 })`

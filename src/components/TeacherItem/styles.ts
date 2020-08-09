@@ -82,7 +82,7 @@ export const FavoriteButton = styled.TouchableOpacity`
   margin-right: 8px;
   justify-content: center;
   align-items: center;
-  background-color: #333333;
+  background-color: #F55643;
   /* background-color: #8257e5; */
 `
 
