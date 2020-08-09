@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import { Feather } from "@expo/vector-icons";
+import AsyncStorage from "@react-native-community/async-storage";
+
+import { TeacherItemsProps } from "../../components/TeacherItem";
 
 import {
   Container,
@@ -26,7 +29,25 @@ const TeacherList = () => {
   const [time, setTime] = useState("");
   const [week_day, setWeekDay] = useState("");
 
+  const [favorites, setFavorites] = useState<number[]>([]);
+
+  const loadFavorites = () => {
+    AsyncStorage.getItem("favorites")
+      .then(response => {
+        if (response) {
+          const favoriteTeachers = JSON.parse(response);
+          const favoriteTeachersId = favoriteTeachers.map((item: TeacherItemsProps) => item.id);
+
+          setFavorites(favoriteTeachersId);
+        }
+
+      })
+      .catch(console.log);
+  }
+
   const handleSubmit = () => {
+    loadFavorites();
+
     const params = {
       subject,
       week_day,
@@ -100,7 +121,7 @@ const TeacherList = () => {
         paddingHorizontal: 16,
         paddingBottom: 24
       }}>
-        {teachers.map((teacher, i) => <TeacherItem  key={i} {...teacher}/>)}
+        {teachers.map((teacher: TeacherItemsProps, i) => <TeacherItem key={i} favorite={favorites.includes(teacher.id)} {...teacher} />)}
       </TeachersList>
     </Container>
   )

@@ -1,6 +1,7 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Linking } from "react-native";
 import AsyncStorage from "@react-native-community/async-storage";
+
 import {
   Container,
   ProfileContainer,
@@ -23,7 +24,9 @@ import heartOutlineIcon from "../../assets/images/icons/heart-outline.png";
 import unfavoriteIcon from "../../assets/images/icons/unfavorite.png";
 import whatsappIcon from "../../assets/images/icons/whatsapp.png";
 
-interface TeacherItemsProps {
+import api from "../../services/api";
+
+export interface TeacherItemsProps {
   name: string;
   avatar: string;
   bio: string;
@@ -31,16 +34,50 @@ interface TeacherItemsProps {
   subject: string;
   whatsapp: string;
   cost: number;
+  favorite: Boolean;
 }
 
-const TeacherItem: React.FC<TeacherItemsProps> = ({ name, id, subject, bio, avatar, cost, whatsapp }) => {
-  useEffect(( ) => {
-    AsyncStorage.getItem("favorites");
-  }, []);
+const TeacherItem: React.FC<TeacherItemsProps> = ({ name, id, subject, bio, avatar, cost, whatsapp, favorite }) => {
+  const [isFavorite, setIsFavorite] = useState(favorite);
 
   const handleLinkToWhatsapp = () => {
+    api.post("connectios", {
+      user_id: id
+    });
     Linking.openURL(`whatsapp://send?phone=${whatsapp}`)
   }
+
+  const handleToggleFavorite = async () => {
+    const favorites = await AsyncStorage.getItem("favorites");
+
+    let favoritesArray = [];
+
+    if (favorites) {
+      favoritesArray = JSON.parse(favorites);
+    }
+
+    const teacher = {
+      name,
+      avatar,
+      bio,
+      subject,
+      cost,
+      whatsapp,
+      id,
+      favorite
+    };
+
+    if (isFavorite) {
+      favoritesArray = favoritesArray.filter( (favTeacher: TeacherItemsProps) => favTeacher.id !== id);
+      setIsFavorite(false);
+    } else {
+      favoritesArray.push(teacher);
+      setIsFavorite(!isFavorite);
+    }
+
+    await AsyncStorage.setItem("favorites", JSON.stringify(favoritesArray))
+  }
+
   return (
     <Container>
       <ProfileContainer>
@@ -65,9 +102,8 @@ const TeacherItem: React.FC<TeacherItemsProps> = ({ name, id, subject, bio, avat
       </ProfileFooter>
 
       <ButtonsContainer>
-        <FavoriteButton>
-          {/* <ButtonIcon  source={heartOutlineIcon} /> */}
-          <ButtonIcon source={unfavoriteIcon} />
+        <FavoriteButton onPress={handleToggleFavorite}>
+          <ButtonIcon source={isFavorite ? unfavoriteIcon : heartOutlineIcon} />
         </FavoriteButton>
 
         <ContactButton onPress={handleLinkToWhatsapp}>
