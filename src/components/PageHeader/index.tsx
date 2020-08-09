@@ -17,7 +17,7 @@ interface PageHeaderProps {
   title: string;
 }
 
-const PageHeader: React.FC<PageHeaderProps> = ({ title }) => {
+const PageHeader: React.FC<PageHeaderProps> = ({ title, children }) => {
   const { navigate } = useNavigation();
   return (
     <HeaderContainer>
@@ -28,6 +28,7 @@ const PageHeader: React.FC<PageHeaderProps> = ({ title }) => {
         <Logo source={logo} />
       </TopBar>
       <HeaderTitle>{title}</HeaderTitle>
+      {children}
     </HeaderContainer>
   )
 }
