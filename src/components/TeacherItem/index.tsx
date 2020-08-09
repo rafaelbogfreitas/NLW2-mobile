@@ -1,5 +1,6 @@
-import React from 'react';
-
+import React, { useEffect } from 'react';
+import { Linking } from "react-native";
+import AsyncStorage from "@react-native-community/async-storage";
 import {
   Container,
   ProfileContainer,
@@ -22,28 +23,43 @@ import heartOutlineIcon from "../../assets/images/icons/heart-outline.png";
 import unfavoriteIcon from "../../assets/images/icons/unfavorite.png";
 import whatsappIcon from "../../assets/images/icons/whatsapp.png";
 
-const TeacherItem = () => {
+interface TeacherItemsProps {
+  name: string;
+  avatar: string;
+  bio: string;
+  id: number;
+  subject: string;
+  whatsapp: string;
+  cost: number;
+}
+
+const TeacherItem: React.FC<TeacherItemsProps> = ({ name, id, subject, bio, avatar, cost, whatsapp }) => {
+  useEffect(( ) => {
+    AsyncStorage.getItem("favorites");
+  }, []);
+
+  const handleLinkToWhatsapp = () => {
+    Linking.openURL(`whatsapp://send?phone=${whatsapp}`)
+  }
   return (
     <Container>
       <ProfileContainer>
-        <ProfileImage source={{ uri: "https://avatars0.githubusercontent.com/u/43966974?s=460&u=e55f14d1486ecfbf0719b9531206240c56998ee1&v=4" }} />
+        <ProfileImage source={{ uri: avatar }} />
         <ProfileInfo>
-          <ProfileName>Rafael</ProfileName>
-          <Subject>Quimíca</Subject>
+          <ProfileName>{name}</ProfileName>
+          <Subject>{subject}</Subject>
         </ProfileInfo>
       </ProfileContainer>
 
       <Bio>
-        Junior Full-stack Developer,
-        {'\n'}{'\n'}
-        fascinated for JavaScript and ES6+, currently learning IOS Development.
+        {bio}
       </Bio>
 
       <ProfileFooter>
         <Price>
           Preço/hora {"   "}
           <Value>
-            R$ 120.00
+            R$ {cost}.00
           </Value>
         </Price>
       </ProfileFooter>
@@ -51,10 +67,10 @@ const TeacherItem = () => {
       <ButtonsContainer>
         <FavoriteButton>
           {/* <ButtonIcon  source={heartOutlineIcon} /> */}
-          <ButtonIcon  source={unfavoriteIcon} />
+          <ButtonIcon source={unfavoriteIcon} />
         </FavoriteButton>
 
-        <ContactButton>
+        <ContactButton onPress={handleLinkToWhatsapp}>
           <ButtonIcon source={whatsappIcon} />
           <ButtonText>Entre em contato</ButtonText>
         </ContactButton>
